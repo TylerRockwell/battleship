@@ -78,7 +78,11 @@ class Grid
     reference[grid_spot[0].to_sym]
   end
 
-  def display()
+  def display
+    display_boat_grid
+  end
+
+  def display_boat_grid
     #Outputs game grid to the user
     y = 1
     print "    1"
@@ -101,5 +105,21 @@ class Grid
     puts "  -----------------------------------------"
   end
 
+  def display_shots_grid
+    y = 1
+    print "    1"
+    (2..10).each {|i| print "   #{i}" }
+    puts
+    puts "  -----------------------------------------"
+    ("A".."J").each do |letter|
+      print "#{letter} |"
+      (1..10).each do |x|
+        (print "   |")
+      end
+      puts
+      y += 1
+    end
+    puts "  -----------------------------------------"
+  end
 
 end
