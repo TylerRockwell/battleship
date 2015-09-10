@@ -47,23 +47,29 @@ class Game
     puts `clear`
   end
 
-  def validate_shot
-
+  def validate_coordinates (coordinates)
+    /\A[a-j]([1-9]|10)\z/i.match(coordinates)
   end
 
   def take_turn
     if @p1_turn
       target = @player1.call_shot
-      x = @player2.grid.x_of(target)
-      y = @player2.grid.y_of(target)
-      @player2.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
-    #  @p1_turn = false
+      if validate_coordinates
+        x = @player2.grid.x_of(target)
+        y = @player2.grid.y_of(target)
+        @player2.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
+      else
+        puts "Invalid coordinates."
+      end
     else
       target = @player2.call_shot
-      x = @player1.grid.x_of(target)
-      y = @player1.grid.y_of(target)
-      @player1.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
-      #@p1_turn = true
+      if validate_coordinates
+        x = @player1.grid.x_of(target)
+        y = @player1.grid.y_of(target)
+        @player1.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
+      else
+        puts "Invalid coordinates."
+      end
     end
     @p1_turn = !@p1_turn
   end

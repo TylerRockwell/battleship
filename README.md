@@ -6,6 +6,7 @@ This is a game of Battleship. There are two players. Each player places 5 ships 
 
 ## New features and bug fixes
 
+* Game no longer crashes if given improperly formatted coordinates.
 * Local multiplayer!
 * Now clears the screen between player turns
 * Displays ships on the grid as they're placed
@@ -37,4 +38,3 @@ Sink all 5 of your opponent's ships.
 * If you place your ship outside of the bounds, the game will tell you that it overlaps another ship.
 * Scrolling up allows you to see the other player's board.
 * Computer player does not place ships
-* Game crashes if given improperly formatted coordinates.

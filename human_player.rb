@@ -12,6 +12,10 @@ class HumanPlayer < Player
     @ships = []
   end
 
+  def validate_coordinates (coordinates)
+    /\A[a-j]([1-9]|10)\z/i.match(coordinates)
+  end
+
   def place_ships(ship_sizes)
     ship_sizes.each {|size| @ships << Ship.new(size)}
 
@@ -20,15 +24,20 @@ class HumanPlayer < Player
       puts "#{@name}, where would you like to place a ship of length #{ship.length}?"
       position = get_user_input
       position.upcase!
-      puts "Across or Down?"
-      across = get_user_input
-      across.downcase!
-      if across == "across"
-        across = true
-      elsif across == "down"
-        across = false
+      if validate_coordinates(position)
+        puts "Across or Down?"
+        across = get_user_input
+        across.downcase!
+        if across == "across"
+          across = true
+        elsif across == "down"
+          across = false
+        else
+          puts "Invalid placement. Please try again."
+          redo
+        end
       else
-        puts "Invalid placement. Please try again"
+        puts "Invalid coordinates entered. Please try again."
         redo
       end
       #across == "across" ? (across = true) : (across = false)
