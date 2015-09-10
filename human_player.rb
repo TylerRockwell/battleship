@@ -30,6 +30,7 @@ class HumanPlayer < Player
         puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
         redo
       end
+      @grid.display_boat_grid
     end
   end
 
