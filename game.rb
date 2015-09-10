@@ -1,4 +1,7 @@
 class Game
+  def get_user_input
+    gets.chomp
+  end
 
   def initialize(player1, player2)
     @player1 = player1
@@ -12,16 +15,32 @@ class Game
   end
 
   def place_ships
-    @player1.place_ships([2,3,3,4,5])
-    @player2.place_ships([2,3,3,4,5])
+    @player1.place_ships([2,])
+    puts `clear`
+    @player2.place_ships([2])
+    puts `clear`
   end
 
   def display_status
-    puts "SHOTS TAKEN:"
-    @player2.grid.display_shots_grid
-    puts
-    puts "YOUR BOARD:"
-    @player1.grid.display_boat_grid
+    if @p1_turn
+      puts "SHOTS TAKEN:"
+      @player2.grid.display_shots_grid
+      puts
+      puts "YOUR BOARD:"
+      @player1.grid.display_boat_grid
+    else
+      puts "SHOTS TAKEN:"
+      @player1.grid.display_shots_grid
+      puts
+      puts "YOUR BOARD:"
+      @player2.grid.display_boat_grid
+    end
+  end
+
+  def clear_screen
+    puts "Press enter to end your turn. This will clear the screen."
+    get_user_input
+    puts `clear`
   end
 
   def take_turn
@@ -43,9 +62,12 @@ class Game
   def play
     welcome
     place_ships
+    puts "#{@player1.name}, press enter to begin."
+    get_user_input
     until @player1.grid.sunk? || @player2.grid.sunk? do
       display_status
       take_turn
+      clear_screen
     end
 
     @player1.grid.sunk? ? (puts "Congratulations, #{@player2.name}!") : (puts "Congratulations, #{@player1.name}!")
