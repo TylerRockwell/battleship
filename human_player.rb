@@ -23,8 +23,15 @@ class HumanPlayer < Player
       puts "Across or Down?"
       across = get_user_input
       across.downcase!
-      across == "across" ? (across = true) : (across = false)
-
+      if across == "across"
+        across = true
+      elsif across == "down"
+        across = false
+      else
+        puts "Invalid placement. Please try again"
+        redo
+      end
+      #across == "across" ? (across = true) : (across = false)
 
       unless @grid.place_ship(ship, @grid.x_of(position), @grid.y_of(position), across)
         puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."

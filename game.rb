@@ -47,6 +47,10 @@ class Game
     puts `clear`
   end
 
+  def validate_shot
+
+  end
+
   def take_turn
     if @p1_turn
       target = @player1.call_shot

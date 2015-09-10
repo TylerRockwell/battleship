@@ -49,6 +49,7 @@ class Grid
     if (1..10).include?(x) && (1..10).include?(y)
       if @locations[get_position(x,y)].fired_upon
         #Automatic miss
+        puts "You have already fired on this spot."
         return false
       else
         #Marks location as being fired upon and checks for a hit
@@ -56,8 +57,7 @@ class Grid
         has_ship_on?(x,y)
       end
     else
-      puts "I'm HERE"
-      puts x, y
+      puts "You have fired out of bounds. Did you think there were ships here?"
       false
     end
   end
