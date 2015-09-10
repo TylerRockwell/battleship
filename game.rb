@@ -15,10 +15,14 @@ class Game
   end
 
   def place_ships
-    @player1.place_ships([2,])
+    display_status
+    @player1.place_ships([2,3,3,4,5])
     puts `clear`
-    @player2.place_ships([2])
+    @p1_turn = !@p1_turn
+    display_status
+    @player2.place_ships([2,3,3,4,5])
     puts `clear`
+    @p1_turn = !@p1_turn
   end
 
   def display_status
@@ -49,14 +53,15 @@ class Game
       x = @player2.grid.x_of(target)
       y = @player2.grid.y_of(target)
       @player2.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
-      @p1_turn = false
+    #  @p1_turn = false
     else
       target = @player2.call_shot
       x = @player1.grid.x_of(target)
       y = @player1.grid.y_of(target)
       @player1.grid.fire_at(x, y) ? (puts "Hit!") : (puts "Miss!")
-      @p1_turn = true
+      #@p1_turn = true
     end
+    @p1_turn = !@p1_turn
   end
 
   def play
