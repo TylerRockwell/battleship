@@ -114,7 +114,11 @@ class Grid
     ("A".."J").each do |letter|
       print "#{letter} |"
       (1..10).each do |x|
-        (print "   |")
+        if @locations[get_position(x,y)].fired_upon
+          @locations[get_position(x,y)].occupied ? (print " + |") : (print " - |")
+        else
+          (print "   |")
+        end
       end
       puts
       y += 1

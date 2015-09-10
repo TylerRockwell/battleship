@@ -5,9 +5,8 @@ require './grid'
 require './position'
 require './game'
 
-grid = Grid.new
-
-grid.place_ship(Ship.new(3),4,5,true)
-grid.place_ship(Ship.new(4),1,1,false)
-
-grid.display
+# human1 = HumanPlayer.new("Amy")
+# human2 = HumanPlayer.new("Beth")
+# game = Game.new(human1, human2)
+#
+# game.play
