@@ -19,6 +19,7 @@ class HumanPlayer < Player
     @ships.each do |ship|
       puts "#{@name}, where would you like to place a ship of length #{ship.length}?"
       position = get_user_input
+      position.upcase!
       puts "Across or Down?"
       across = get_user_input
       across.downcase!

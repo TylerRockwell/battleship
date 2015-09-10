@@ -23,10 +23,12 @@ class Grid
     #Checks if spaces are occupied
     if across
       (x..x+ship.length-1).each do |i|
+        return false if i > 10
         return false if has_ship_on?(i, y)
       end
     else
       (y..y+ship.length-1).each do |i|
+        return false if i > 10
         return false if has_ship_on?(x, i)
       end
     end
@@ -54,6 +56,8 @@ class Grid
         has_ship_on?(x,y)
       end
     else
+      puts "I'm HERE"
+      puts x, y
       false
     end
   end
@@ -74,6 +78,7 @@ class Grid
   end
 
   def y_of(grid_spot)
+    grid_spot.upcase!
     reference = {A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 10}
     reference[grid_spot[0].to_sym]
   end

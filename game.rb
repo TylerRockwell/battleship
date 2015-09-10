@@ -44,6 +44,7 @@ class Game
     welcome
     place_ships
     until @player1.grid.sunk? || @player2.grid.sunk? do
+      display_status
       take_turn
     end
 
